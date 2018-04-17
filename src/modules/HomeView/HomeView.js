@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import ImagePicker from 'react-native-image-picker';
 import {
   View,
-  FlatList,
   ActivityIndicator,
   InteractionManager
 } from 'react-native';
 
 // Components
-import ImageBox from '../../components/ImageBox';
+import ImageList from '../../components/ImageList';
 
 // Services
 import {fetchPhotos} from '../../services/unsplashAPI';
@@ -22,7 +21,7 @@ import {color1} from '../../themes/Colors';
 import styles from './HomeViewStyles';
 
 class HomeView extends Component {
-  static displayName = 'HomeViewView';
+  static displayName = 'HomeView';
 
   static propTypes = {
     navigation: PropTypes.object.isRequired,
@@ -60,15 +59,6 @@ class HomeView extends Component {
   }
 
   /**
-   * Component to render in list
-   * @param  {Object} item object to information to render in list
-   * @return {Component}    Row to render in list
-   */
-  getRenderRow = ({item}) => (
-    <ImageBox item={item.toJS()}/>
-  )
-
-  /**
    *  Open image  library provider to user select image and add in top list
    */
   handleAddImage = () => {
@@ -90,13 +80,6 @@ class HomeView extends Component {
     });
   }
 
-  /**
-   *  Key asign to component render in list
-   * @param  {Object} item data
-   * @return  {String} key name to component
-   */
-  _keyExtractor = (item) => item.toJS().image;
-
   render() {
     // get props
     const images = this.props.images
@@ -115,13 +98,7 @@ class HomeView extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <FlatList
-          data={images}
-          renderItem={this.getRenderRow}
-          keyExtractor={this._keyExtractor}
-        />
-      </View>
+      <ImageList images={images}/>
     );
   }
 }

@@ -1,13 +1,11 @@
 {
   "name": "PSImageDemo",
-  "author": "Futurice",
-  "description": "React Native App Starter Kit for Android and iOS",
+  "author": "Rafael Torres",
+  "description": "Simple React Native App to test usage the Pepperoni Boilerplate and  Unsplash API",
   "license": "MIT",
-  "homepage": "http://getpepperoni.com",
-  "bugs": "https://github.com/futurice/pepperoni-app-kit/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/futurice/pepperoni-app-kit"
+    "url": "https://github.com/RafaelTorres/PSImageDemo"
   },
   "keywords": [
     "React Native",
@@ -72,7 +70,7 @@
     "eslint-plugin-react": "^6.7.1",
     "fetch-mock": "^5.5.0",
     "istanbul": "1.0.0-alpha.2",
-    "jest": "^17.0.2",
+    "jest": "^17.0.3",
     "plop": "^1.7.4",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^16.0.0",
