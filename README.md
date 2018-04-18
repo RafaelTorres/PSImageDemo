@@ -30,6 +30,10 @@ Some modules of the modules with which we worked with this project were the foll
 - [React Navigation](https://reactnavigation.org/)
 - [React Native Image Picker](https://github.com/react-community/react-native-image-picker)
 
+## Unit test
+
+To running unit test Run `npm test`.
+
 ## License by Pepperoni
 
 [MIT License](LICENSE)

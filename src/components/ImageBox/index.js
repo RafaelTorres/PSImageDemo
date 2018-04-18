@@ -13,6 +13,8 @@ import {color1} from '../../themes/Colors';
 // Relative Path Only
 import styles from './ImageBoxStyles';
 
+const defaultImage = 'https://myaco.lemans.org/GED/content/4805C9CE-ECF4-4232-AEF4-3580948695DC.jpg';
+
 class ImageBox extends Component {
 
   state = {loading: false}
@@ -33,11 +35,15 @@ class ImageBox extends Component {
        </View>)
       : null;
 
+    const source = this.props.item.image
+    ? this.props.item.image
+    : defaultImage;
+
     return (
       <View style={styles.container}>
         <Image
           style={styles.image}
-          source={{uri: this.props.item.image}}
+          source={{uri: source}}
           onLoadStart={() => this.setLoadState(true)}
           onLoadEnd= {() => this.setLoadState(false)}/>
           {LoadingComponent}

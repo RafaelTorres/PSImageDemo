@@ -12,7 +12,7 @@
     "Starter Kit",
     "Bitrise",
     "Redux",
-    "Auth0"
+    "Unsplash"
   ],
   "version": "1.0.0",
   "private": false,
@@ -28,16 +28,17 @@
   "jest": {
     "preset": "react-native",
     "setupFiles": [
-      "<rootDir>/test/setup.js"
+      "./test/setup.js"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-navigation)"
+      "node_modules/(?!(jest-)?react-native|react-navigation|react-native-image-picker|react-navigation-header-buttons|react-native-vector-icons)"
     ]
   },
   "dependencies": {
     "bluebird": "^3.3.5",
     "event-emitter": "^0.3.4",
     "immutable": "^3.7.6",
+    "jest": "^22.4.3",
     "lodash": "^4.11.0",
     "moment": "^2.12.0",
     "prop-types": "^15.6.0",
@@ -56,9 +57,9 @@
     "standard-http-error": "^2.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.9.0",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^7.1.0",
-    "babel-jest": "^17.0.2",
+    "babel-jest": "^22.4.3",
     "babel-polyfill": "^6.9.0",
     "babel-preset-react-native": "^1.9.0",
     "babel-preset-stage-0": "^6.5.0",
@@ -70,7 +71,6 @@
     "eslint-plugin-react": "^6.7.1",
     "fetch-mock": "^5.5.0",
     "istanbul": "1.0.0-alpha.2",
-    "jest": "^17.0.3",
     "plop": "^1.7.4",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^16.0.0",
