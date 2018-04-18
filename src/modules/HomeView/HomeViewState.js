@@ -4,7 +4,8 @@ import {Map, List} from 'immutable';
 // Constants
 import {
   SET_IMAGES_LIST,
-  ADD_IMAGE_TO_LIST
+  ADD_IMAGE_TO_LIST,
+  ADD_MORE_IMAGES_TO_LIST
 } from './HomeViewConstants';
 
 import {
@@ -27,6 +28,9 @@ export default function HomeViewStateReducer(state = initialState, action = {}) 
     case ADD_IMAGE_TO_LIST:
       return state
         .set('images', state.get('images').unshift(new Map(action.payload)));
+    case ADD_MORE_IMAGES_TO_LIST:
+      return state
+        .set('images', state.get('images').concat(new List(action.payload)));
     default:
       return state;
   }

@@ -32,7 +32,9 @@ Some modules of the modules with which we worked with this project were the foll
 
 ## Unit test
 
-To running unit test Run `npm test`.
+To running simple unit test run `npm test`.
+
+To running  unit test with **Eslint** run `npm run lint`
 
 ## License by Pepperoni
 

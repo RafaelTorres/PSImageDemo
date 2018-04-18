@@ -31,12 +31,15 @@ class HomeView extends Component {
     ]),
     actions: PropTypes.shape({
       setImagesList: PropTypes.func,
-      addImagesToList: PropTypes.func
+      addImagesToList: PropTypes.func,
+      addMoreImagesToList: PropTypes.func
     }).isRequired
   };
 
   state = {
-    loading: true
+    loading: true,
+    refreshing: false,
+    page: 1
   };
 
   componentWillMount() {
@@ -49,13 +52,7 @@ class HomeView extends Component {
   }
 
   componentDidMount() {
-    fetchPhotos()
-      .then(images => {
-        // Dimiss indicator
-        this.setState({loading: false});
-        // Update image in Store
-        this.props.actions.setImagesList(images);
-      });
+    this.fechImages();
   }
 
   /**
@@ -80,6 +77,54 @@ class HomeView extends Component {
     });
   }
 
+  /**
+   *  Refresh Photo list call api
+   */
+  handleRefresh = () => {
+    this.setState({
+      page: 1,
+      refreshing: true
+    }, () => {
+      this.fechImages();
+    });
+
+  }
+
+  /**
+   *  Load more image in list
+   */
+  handleLoadMore = () => {
+    this.setState({
+      page: this.state.page + 1
+    }, () => {
+      this.fechImages();
+    });
+  }
+
+  /**
+   *  Execute request to load images from unsplashAPI
+   */
+  fechImages = () => {
+    fetchPhotos(this.state.page)
+      .then(images => {
+
+        const {page} = this.state;
+        // Dimiss indicator
+        this.setState({
+          loading: false,
+          refreshing: false
+        });
+
+        if (page === 1) {
+          // Update image in Store
+          this.props.actions.setImagesList(images);
+        } else {
+          // Update image in Store
+          this.props.actions.addMoreImagesToList(images);
+        }
+      });
+  }
+
   render() {
     // get props
     const images = this.props.images
@@ -98,7 +143,12 @@ class HomeView extends Component {
     }
 
     return (
-      <ImageList images={images}/>
+      <ImageList
+        images={images}
+        refreshing={this.state.refreshing}
+        onRefresh={this.handleRefresh}
+        onEndReached={this.handleLoadMore}
+      />
     );
   }
 }

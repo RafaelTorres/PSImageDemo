@@ -15,8 +15,17 @@ import styles from './ImageListStyles';
 class ImageList extends Component {
 
   static propTypes = {
-    images: PropTypes.array
+    images: PropTypes.array,
+    refreshing: PropTypes.bool,
+    onRefresh: PropTypes.func,
+    onEndReached: PropTypes.func
   };
+
+  static defaultProps = {
+    refreshing: false,
+    onRefresh: () => {},
+    onEndReached: () => {}
+  }
 
   /**
    * Component to render in list
@@ -41,6 +50,10 @@ class ImageList extends Component {
           data={this.props.images}
           renderItem={this.getRenderRow}
           keyExtractor={this._keyExtractor}
+          refreshing={this.props.refreshing}
+          onRefresh={this.props.onRefresh}
+          onEndReached={this.props.onEndReached}
+          onEndReachedThreshold={0}
         />
       </View>
     );

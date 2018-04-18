@@ -7,7 +7,8 @@ import HomeViewReducer from '../HomeViewState';
 // Actions
 import {
   setImagesList,
-  addImagesToList
+  addImagesToList,
+  addMoreImagesToList
 } from '../HomeViewActions';
 
 // Default Params
@@ -27,26 +28,20 @@ describe('HomeView - Reducer', () => {
   });
 
   it('should handle  the setImagesList action correctly ', () => {
-    const images = [
-      {
-        image: 'https://assets.entrepreneur.com/content/3x2/1300/1395420306-what-does-color-logo-say-about-business-infographic.jpg'
-      },
-      {
-        image: 'https://assets.entrepreneur.com/content/3x2/1300/1395420306-what-does-color-logo-say-about-business-infographic.jpg'
-      },
-      {
-        image: 'https://assets.entrepreneur.com/content/3x2/1300/1395420306-what-does-color-logo-say-about-business-infographic.jpg'
-      }
-    ];
+    const images = [{},{},{}];
     const expectedResult = state.set('images', List(images));
     expect(HomeViewReducer(state, setImagesList(images))).toEqual(expectedResult);
   });
 
   it('should handle  the addImagesToList action correctly ', () => {
-    const image = {
-      image: 'https://assets.entrepreneur.com/content/3x2/1300/1395420306-what-does-color-logo-say-about-business-infographic.jpg'
-    };
+    const image = {};
     const expectedResult = state.set('images', state.get('images').unshift(new Map(image)));
     expect(HomeViewReducer(state, addImagesToList(image))).toEqual(expectedResult);
+  });
+
+  it('should handle  the addMoreImagesToList action correctly ', () => {
+    const images = [{},{},{}];
+    const expectedResult = state.set('images', state.get('images').concat(new List(images)));
+    expect(HomeViewReducer(state, addMoreImagesToList(images))).toEqual(expectedResult);
   });
 });
